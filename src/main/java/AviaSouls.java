@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class AviaSouls {
     private Ticket[] tickets = new Ticket[0];
 
@@ -26,6 +28,36 @@ public class AviaSouls {
                     result = addToArray(result, ticket); // добавляем его в массив ответа
                 }
             }
+        }
+        for (int l = 0; l < result.length; l++) { // проходим проверку несколько раз, чтобы все билеты шли в порядке цены
+            for (int i = 0; i < result.length - 1; i++) {
+                if (result[i].compareTo(result[i + 1]) < 0) {
+                    Ticket temp = result[i];
+                    result[i] = result[i + 1];
+                    result[i + 1] = temp;
+                }
+            } l++;
+        }
+        return result;
+    }
+
+    public Ticket[] searchAndSortBy(String from, String to, Comparator<Ticket> comparator){
+        Ticket[] result = new Ticket[0]; // массив для ответа
+        for (Ticket ticket : tickets) { // перебираем все билеты
+            if (ticket.getFrom().equals(from)) { // совпадает аэропорт вылета
+                if (ticket.getTo().equals(to)) { // совпадает аэропорт прилёта
+                    result = addToArray(result, ticket); // добавляем его в массив ответа
+                }
+            }
+        }
+        for (int l = 0; l < result.length; l++) { // проходим проверку несколько раз, чтобы все билеты шло в порялке цены
+            for (int i = 0; i < result.length - 1; i++) {
+                if (comparator.compare(result[i], result[i + 1]) > 0) {
+                    Ticket temp = result[i];
+                    result[i] = result[i + 1];
+                    result[i + 1] = temp;
+                }
+            } l++;
         }
         return result;
     }

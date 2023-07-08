@@ -1,6 +1,8 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket implements Comparable<Ticket> {
     private String from;
     private String to;
     private int price;
@@ -40,11 +42,22 @@ public class Ticket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return price == ticket.price && timeFrom == ticket.timeFrom && timeTo == ticket.timeTo && from.equals(ticket.from) && to.equals(ticket.to);
+        return getPrice() == ticket.getPrice() && getTimeFrom() == ticket.getTimeFrom() && getTimeTo() == ticket.getTimeTo() && getFrom().equals(ticket.getFrom()) && getTo().equals(ticket.getTo());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(from, to, price, timeFrom, timeTo);
+    }
+
+    @Override
+    public int compareTo(@NotNull Ticket o) {
+        if (this.getPrice() < o.getPrice()) {
+            return -1;
+        } else if (this.getPrice() > o.getPrice()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
