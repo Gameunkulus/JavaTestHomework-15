@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class AviaSouls {
@@ -29,15 +30,7 @@ public class AviaSouls {
                 }
             }
         }
-        for (int l = 0; l < result.length; l++) { // проходим проверку несколько раз, чтобы все билеты шли в порядке цены
-            for (int i = 0; i < result.length - 1; i++) {
-                if (result[i].compareTo(result[i + 1]) < 0) {
-                    Ticket temp = result[i];
-                    result[i] = result[i + 1];
-                    result[i + 1] = temp;
-                }
-            } l++;
-        }
+        Arrays.sort(result);
         return result;
     }
 
@@ -50,15 +43,7 @@ public class AviaSouls {
                 }
             }
         }
-        for (int l = 0; l < result.length; l++) { // проходим проверку несколько раз, чтобы все билеты шло в порялке цены
-            for (int i = 0; i < result.length - 1; i++) {
-                if (comparator.compare(result[i], result[i + 1]) > 0) {
-                    Ticket temp = result[i];
-                    result[i] = result[i + 1];
-                    result[i + 1] = temp;
-                }
-            } l++;
-        }
+        Arrays.sort(result,comparator);
         return result;
     }
 
