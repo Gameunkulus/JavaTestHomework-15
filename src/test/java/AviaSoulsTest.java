@@ -49,7 +49,11 @@ class AviaSoulsTest {
         Assertions.assertArrayEquals(expected3, client.searchAndSortBy("Шереметьево", "Шарм-эль-шейх", compare));
         //проверка на массив с одной переменной
         Assertions.assertArrayEquals(expected4, client.search("Шереметьево", "Мадрид"));
+        Assertions.assertArrayEquals(expected4, client.searchAndSortBy("Шереметьево", "Мадрид", compare));
+        Assertions.assertArrayEquals(expected4, client.searchAndSortBy("Шереметьево", "Мадрид", Ticket::compareTo));
         //проверка на массив с пустым содержимым
         Assertions.assertArrayEquals(expected5, client.search("Шереметьево", "Париж"));
+        Assertions.assertArrayEquals(expected5, client.searchAndSortBy("Шереметьево", "Париж", compare));
+        Assertions.assertArrayEquals(expected5, client.searchAndSortBy("Шереметьево", "Париж", Ticket::compareTo));
     }
 }
